@@ -1,5 +1,21 @@
 /* Your Code Here */
 
+const createEmployeeRecord = function (row) {
+  return {
+    firstName: row[0],
+    title: row[2],
+    familyName: row[1],
+    payPerHour: row[3],
+    timeInEvents: [],
+    timeOutEvents: [],
+  };
+};
+
+const createEmployeeRecords = function (employeeRowData) {
+  return employeeRowData.map(function (row) {
+    return createEmployeeRecord(row);
+  });
+};
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
@@ -10,14 +26,16 @@
  */
 
 const allWagesFor = function () {
-    const eligibleDates = this.timeInEvents.map(function (e) {
-        return e.date
-    })
+  const eligibleDates = this.timeInEvents.map(function (e) {
+    return e.date;
+  });
 
-    const payable = eligibleDates.reduce(function (memo, d) {
-        return memo + wagesEarnedOnDate.call(this, d)
-    }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
+  const payable = eligibleDates.reduce(
+    function (memo, d) {
+      return memo + wagesEarnedOnDate.call(this, d);
+    }.bind(this),
+    0
+  ); // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
-    return payable
-}
-
+  return payable;
+};
