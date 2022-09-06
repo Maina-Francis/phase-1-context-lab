@@ -52,6 +52,12 @@ const hoursWorkedOnDate = function (appropriateDate) {
 
   return (outEvent.hour - inEvent.hour) / 100;
 };
+
+const wagesEarnedOnDate = function (appropriateDate) {
+  let rawSalary =
+    hoursWorkedOnDate.call(this, appropriateDate) * this.payPerHour;
+  return parseFloat(rawSalary.toString());
+};
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
