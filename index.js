@@ -58,6 +58,33 @@ const wagesEarnedOnDate = function (appropriateDate) {
     hoursWorkedOnDate.call(this, appropriateDate) * this.payPerHour;
   return parseFloat(rawSalary.toString());
 };
+
+let allWages = function () {
+  let appropriateDates = this.timeInEvents.map(function (e) {
+    return e.date;
+  });
+
+  let payable = appropriateDates.reduce(
+    function (memo, date) {
+      return memo + wagesEarnedOnDate.call(this, date);
+    }.bind(this),
+    0
+  );
+
+  return payable;
+};
+
+const findEmployeeByFirstName = function (arr, firstName) {
+  return arr.find(function (records) {
+    return records.firstName === firstName;
+  });
+};
+
+const calculatePayroll = function (arrayOfEmployeeRecords) {
+  return arrayOfEmployeeRecords.reduce(function (memo, records) {
+    return memo + allWages.call(records);
+  }, 0);
+};
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
