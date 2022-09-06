@@ -30,14 +30,27 @@ const createTimeInEvent = function (dateStamp) {
 };
 
 const createTimeOutEvent = function (dateStamp) {
-  let [date, hour] = dateStamp.split("");
+  let [date, hour] = dateStamp.split(" ");
 
   this.timeOutEvents.push({
     type: "TimeOut",
     hour: parseInt(hour, 10),
     date,
   });
+
   return this;
+};
+
+const hoursWorkedOnDate = function (appropriateDate) {
+  let inEvent = this.timeInEvents.find((event) => {
+    return event.date === appropriateDate;
+  });
+
+  let outEvent = this.timeOutEvents.find(function (event) {
+    return event.date === appropriateDate;
+  });
+
+  return (outEvent.hour - inEvent.hour) / 100;
 };
 /*
  We're giving you this function. Take a look at it, you might see some usage
